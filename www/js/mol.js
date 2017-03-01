@@ -1,19 +1,21 @@
+var w,h,ctx;
 $( document ).ready(function() {
-	var example = $('canvas')[0],
+	var example = $('canvas')[0];
 	ctx = example.getContext('2d');
+	ctx.fillStyle = 'white';
 	w =  $('canvas').width();
 	h =  $('canvas').height();
 	mol();
+	rend();
 });
-var w,h;
 var kr = {y:0,V:1,k:10};
-var mol = function(){
+function mol(){
 	getmol({i:50,j:500,l:5000});
 	console.log(elem_arr);
 }
 var elem_arr = [];
 var t = 1;
-var getmol = function(arr){
+function getmol(arr){
 	//i
 	//j
 	//l
@@ -26,16 +28,16 @@ var getmol = function(arr){
 		}
 	}
 }
-var bum = function(i){
+function bum(i){
 	var el = elem_arr[i];
 	kr.V = (2*el.V + (kr.k - 1)*kr.V)/(kr.k + 1);
 	el.V = (2*kr.V - (kr.k - 1)*el.V)/(kr.k + 1);
 }
-var move = function(){
+function move(){
 	for(var i = 0; i<elem_arr.i; i++){
 		elem_arr[i].y += elem_arr[i].V*t;
 	}
 }
-var rend = function(){
-	ctx.fillRect(0, 0, w, h)
+function rend(){
+	ctx.fillRect(0, 0, w, h);
 }
